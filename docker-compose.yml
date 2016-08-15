@@ -1,0 +1,18 @@
+version: '2'
+services:
+  app1:
+    build: ./server
+    environment:
+      - NODE_PORT=3000
+  app2:
+    build: ./server
+    environment:
+      - NODE_PORT=3001
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+    links:
+      - app1:app1
+      - app2:app2
+
